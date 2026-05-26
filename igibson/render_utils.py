@@ -398,7 +398,8 @@ def annotate_bbox(image, obj, bbox_vertices_uv, sim_env):
 
     label = obj_name_pddl
     font = ImageFont.load_default()
-    label_width, label_height = draw.textsize(label, font=font) # might be incorrect without with fontsize=100
+    bbox = draw.textbbox((0, 0), label, font=font)
+    label_width, label_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
 
     # Try rightmost point
     candidates = [
